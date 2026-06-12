@@ -1,0 +1,745 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="A special interactive love letter for Mukami with a story, proposal, milestones, and voice note."
+        />
+        <title>A Special Message for My Love 💜</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&family=Quicksand:wght@400..700&family=Pacifico&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="style.css" />
+        <link rel="manifest" href="manifest.json" />
+        <meta name="theme-color" content="#9d4edd" />
+        <meta name="color-scheme" content="dark" />
+        <link rel="apple-touch-icon" href="icon-192.png" />
+    </head>
+    <body class="app-loading">
+        <a href="#main-content" class="sr-only focusable-skip-link"
+            >Skip to main content</a
+        >
+        <!-- Ambient Sound / Music Controls -->
+        <button
+            id="music-btn"
+            class="music-btn"
+            type="button"
+            aria-label="Toggle ambient sound"
+            aria-pressed="false"
+        >
+            <svg viewBox="0 0 24 24" class="icon-music">
+                <path
+                    fill="currentColor"
+                    d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"
+                />
+            </svg>
+            <span>Play Sound</span>
+        </button>
+
+        <!-- Stars Background -->
+        <div class="stars-container" id="stars"></div>
+        <div class="shooting-stars-container" id="shooting-stars"></div>
+        <div class="clouds-container">
+            <div class="cloud cloud-1"></div>
+            <div class="cloud cloud-2"></div>
+        </div>
+
+        <!-- FIX: Floating hearts container (was referenced in CSS but missing from HTML) -->
+        <div class="floating-hearts" id="floating-hearts"></div>
+
+        <div
+            class="unlock-overlay active"
+            id="unlock-overlay"
+            aria-hidden="false"
+        >
+            <div class="unlock-card">
+                <p class="unlock-kicker">A tiny secret before we begin ✨</p>
+                <h1 class="unlock-title">Enter our magic word</h1>
+                <p class="unlock-text">
+                    Hint: the word Stitch would never stop saying.
+                </p>
+                <form class="unlock-form" id="unlock-form">
+                    <label class="sr-only" for="unlock-input"
+                        >Secret word</label
+                    >
+                    <input
+                        id="unlock-input"
+                        class="unlock-input"
+                        type="password"
+                        inputmode="text"
+                        autocomplete="off"
+                        placeholder="Type the secret word"
+                        aria-describedby="unlock-feedback"
+                    />
+                    <button class="btn-primary" type="submit">Unlock 💜</button>
+                </form>
+                <p
+                    class="unlock-feedback"
+                    id="unlock-feedback"
+                    aria-live="polite"
+                ></p>
+            </div>
+        </div>
+
+        <button
+            id="install-btn"
+            class="install-btn"
+            type="button"
+            hidden
+            aria-label="Install this app"
+        >
+            Install App ✨
+        </button>
+
+        <!-- Main Container -->
+        <main class="app-container" id="main-content">
+            <!-- Section 1: The Envelope -->
+            <section class="section active" id="envelope-section">
+                <div class="envelope-wrapper">
+                    <div class="envelope" id="envelope">
+                        <div class="flap"></div>
+                        <div class="pocket"></div>
+                        <div class="letter" id="letter">
+                            <div class="letter-content">
+                                <h2>Aloha, Babygirl...</h2>
+                                <p>
+                                    I made something special just for you. Click
+                                    below to open our story.
+                                </p>
+                                <button
+                                    class="btn-primary"
+                                    id="open-story-btn"
+                                    type="button"
+                                >
+                                    Open Our Story
+                                </button>
+                            </div>
+                        </div>
+                        <div class="seal" id="seal">
+                            <!-- Stitch Paw/Heart Wax Seal -->
+                            <svg viewBox="0 0 100 100" class="seal-svg">
+                                <circle
+                                    cx="50"
+                                    cy="50"
+                                    r="40"
+                                    class="seal-base"
+                                />
+                                <path
+                                    d="M50 35 C40 20, 20 35, 50 65 C80 35, 60 20, 50 35"
+                                    class="seal-heart"
+                                />
+                                <circle
+                                    cx="35"
+                                    cy="25"
+                                    r="8"
+                                    class="seal-paw"
+                                />
+                                <circle
+                                    cx="50"
+                                    cy="18"
+                                    r="8"
+                                    class="seal-paw"
+                                />
+                                <circle
+                                    cx="65"
+                                    cy="25"
+                                    r="8"
+                                    class="seal-paw"
+                                />
+                            </svg>
+                            <div class="seal-prompt">Tap to open</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: Our Story (Timeline) -->
+            <section class="section" id="story-section">
+                <div class="scroll-prompt" aria-hidden="true">
+                    Scroll down to hear me out 💜
+                </div>
+                <div class="story-timeline">
+                    <!-- Love Card 1 -->
+                    <div class="love-card-wrapper">
+                        <div class="love-card" style="--rotation: -2deg">
+                            <div class="love-card-icon">💜</div>
+                            <h3>Why You...</h3>
+                            <p>
+                                From the first day we started talking,
+                                everything changed. You kept saying all the
+                                right stuff. Talking to you from the first day
+                                has been so fun. I am yet to get bored. and the
+                                best part is it only gets better. I wanna
+                                continue spending my days with you. Right now I
+                                can't see a day without you. You came into my
+                                life in my no relationship era. I am so glad it
+                                happened. Thank you for being the person I love.
+                                Love with you feels so right and so effortless.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Love Card 2 -->
+                    <div class="love-card-wrapper">
+                        <div class="love-card" style="--rotation: 3deg">
+                            <div class="love-card-icon">🌸</div>
+                            <h3>Every Day With You...</h3>
+                            <p>
+                                I want to spend every morning waking up knowing
+                                you're mine and every night falling asleep
+                                grateful that you chose me. I want the lazy
+                                Sundays, the random 2 AM conversations, the
+                                silly arguments about nothing, the adventures we
+                                haven't even dreamed of yet. I want to be the
+                                one who makes you smile when the world feels
+                                heavy, the one who holds your hand through
+                                everything life throws our way. Every single day
+                                with you is a day I know I'm exactly where I'm
+                                supposed to be.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Love Card 3 — Friends Reference -->
+                    <div class="love-card-wrapper">
+                        <div class="love-card" style="--rotation: -1deg">
+                            <div class="love-card-icon">☕</div>
+                            <h3>You're My Lobster 🦞</h3>
+                            <p>
+                                You know how Phoebe says "he's her lobster"
+                                because lobsters mate for life and fall in love?
+                                Well, you're my lobster. If our love story were
+                                a Friends episode, I'd want it to be the one
+                                that never ends just us on that orange couch at
+                                Central Perk, laughing until our stomachs hurt,
+                                stealing each other's fries, and knowing that no
+                                matter what, we'll always be each other's
+                                person. Could I BE any more in love with you?
+                                💜(Hii yote nimegoogle😂😂)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reasons Ticker -->
+                <div class="ticker-heading">💜 Reasons I Love You</div>
+                <div class="reasons-ticker">
+                    <div class="ticker-track" id="ticker-track">
+                        <!-- Items duplicated for seamless infinite loop -->
+                        <div class="ticker-item">
+                            <span class="ticker-emoji">💜</span> Your laugh
+                        </div>
+                        <div class="ticker-item">
+                            <span class="ticker-emoji">🌸</span> The way you
+                            care
+                        </div>
+                        <div class="ticker-item">
+                            <span class="ticker-emoji">✨</span> Your kindness
+                        </div>
+                        <div class="ticker-item">
+                            <span class="ticker-emoji">☕</span> Our moments
+                            together
+                        </div>
+                        <div class="ticker-item">
+                            <span class="ticker-emoji">🌙</span> Your smile
+                        </div>
+                        <div class="ticker-item">
+                            <span class="ticker-emoji">💕</span> How you make me
+                            feel
+                        </div>
+                        <div class="ticker-item">
+                            <span class="ticker-emoji">🦋</span> Your mind
+                        </div>
+                        <div class="ticker-item">
+                            <span class="ticker-emoji">🌺</span> Your phat ass
+                        </div>
+                        <div class="ticker-item">
+                            <span class="ticker-emoji">⭐</span> How you listen
+                        </div>
+                        <div class="ticker-item">
+                            <span class="ticker-emoji">🎶</span> Your voice
+                        </div>
+                        <div class="ticker-item">
+                            <span class="ticker-emoji">🍕</span> Bedroom skills
+                        </div>
+                        <div class="ticker-item">
+                            <span class="ticker-emoji">💜</span> Your heart
+                        </div>
+                        <!-- Duplicates for seamless loop -->
+                        <div class="ticker-item">
+                            <span class="ticker-emoji">💜</span> Your laugh
+                        </div>
+                        <div class="ticker-item">
+                            <span class="ticker-emoji">🌸</span> The way you
+                            care
+                        </div>
+                        <div class="ticker-item">
+                            <span class="ticker-emoji">✨</span> Your kindness
+                        </div>
+                        <div class="ticker-item">
+                            <span class="ticker-emoji">☕</span> Our late nights
+                        </div>
+                        <div class="ticker-item">
+                            <span class="ticker-emoji">🌙</span> Your smile
+                        </div>
+                        <div class="ticker-item">
+                            <span class="ticker-emoji">💕</span> How you make me
+                            feel
+                        </div>
+                        <div class="ticker-item">
+                            <span class="ticker-emoji">🦋</span> Your mind
+                        </div>
+                        <div class="ticker-item">
+                            <span class="ticker-emoji">🌺</span> Your warmth
+                        </div>
+                        <div class="ticker-item">
+                            <span class="ticker-emoji">⭐</span> How you listen
+                        </div>
+                        <div class="ticker-item">
+                            <span class="ticker-emoji">🎶</span> Your voice
+                        </div>
+                        <div class="ticker-item">
+                            <span class="ticker-emoji">🍕</span> Your Phat Ass
+                        </div>
+                        <div class="ticker-item">
+                            <span class="ticker-emoji">💜</span> Your heart
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-end">
+                    <button
+                        class="btn-primary btn-large"
+                        id="to-proposal-btn"
+                        type="button"
+                    >
+                        Continue 💜
+                    </button>
+                </div>
+            </section>
+
+            <!-- Section 3: The Proposal -->
+            <section class="section" id="proposal-section">
+                <div class="proposal-card" id="proposal-card">
+                    <!-- Stitch Center Illustration -->
+                    <div class="stitch-container">
+                        <svg viewBox="0 0 200 200" class="stitch-proposal-svg">
+                            <defs>
+                                <radialGradient
+                                    id="blush"
+                                    cx="50%"
+                                    cy="50%"
+                                    r="50%"
+                                >
+                                    <stop
+                                        offset="0%"
+                                        stop-color="#ff9ebb"
+                                        stop-opacity="0.6"
+                                    />
+                                    <stop
+                                        offset="100%"
+                                        stop-color="#ff9ebb"
+                                        stop-opacity="0"
+                                    />
+                                </radialGradient>
+                            </defs>
+                            <!-- Ears -->
+                            <path
+                                d="M50,80 C20,60 5,20 25,40 C45,60 50,70 50,80 Z"
+                                fill="#2d87e2"
+                                stroke="#1c5692"
+                                stroke-width="3"
+                            />
+                            <path
+                                d="M45,75 C25,58 12,30 28,45 C44,60 45,68 45,75 Z"
+                                fill="#ff9ebb"
+                            />
+                            <path
+                                d="M150,80 C180,60 195,20 175,40 C155,60 150,70 150,80 Z"
+                                fill="#2d87e2"
+                                stroke="#1c5692"
+                                stroke-width="3"
+                            />
+                            <path
+                                d="M155,75 C175,58 188,30 172,45 C156,60 155,68 155,75 Z"
+                                fill="#ff9ebb"
+                            />
+                            <!-- Body/Head -->
+                            <ellipse
+                                cx="100"
+                                cy="115"
+                                rx="55"
+                                ry="45"
+                                fill="#2d87e2"
+                                stroke="#1c5692"
+                                stroke-width="3"
+                            />
+                            <path
+                                d="M60,115 C60,95 75,85 100,85 C125,85 140,95 140,115 C140,130 120,145 100,145 C80,145 60,130 60,115 Z"
+                                fill="#71b5ff"
+                            />
+                            <!-- Eyes -->
+                            <ellipse
+                                cx="80"
+                                cy="110"
+                                rx="10"
+                                ry="14"
+                                fill="#1d5c9c"
+                            />
+                            <ellipse
+                                cx="82"
+                                cy="108"
+                                rx="8"
+                                ry="11"
+                                fill="#000"
+                            />
+                            <circle cx="84" cy="104" r="3" fill="#fff" />
+                            <ellipse
+                                cx="120"
+                                cy="110"
+                                rx="10"
+                                ry="14"
+                                fill="#1d5c9c"
+                            />
+                            <ellipse
+                                cx="118"
+                                cy="108"
+                                rx="8"
+                                ry="11"
+                                fill="#000"
+                            />
+                            <circle cx="116" cy="104" r="3" fill="#fff" />
+                            <!-- Blush -->
+                            <circle
+                                cx="70"
+                                cy="122"
+                                r="10"
+                                fill="url(#blush)"
+                            />
+                            <circle
+                                cx="130"
+                                cy="122"
+                                r="10"
+                                fill="url(#blush)"
+                            />
+                            <!-- Nose -->
+                            <path
+                                d="M92,112 C92,108 108,108 108,112 C108,118 92,118 92,112 Z"
+                                fill="#123d6a"
+                            />
+                            <!-- Smile -->
+                            <path
+                                d="M85,126 C90,132 110,132 115,126"
+                                stroke="#123d6a"
+                                stroke-width="3"
+                                stroke-linecap="round"
+                                fill="none"
+                            />
+                            <!-- Flower -->
+                            <circle cx="100" cy="148" r="7" fill="#ffeb3b" />
+                            <circle cx="92" cy="143" r="5" fill="#e91e63" />
+                            <circle cx="108" cy="143" r="5" fill="#e91e63" />
+                            <circle cx="100" cy="156" r="5" fill="#e91e63" />
+                            <circle cx="92" cy="151" r="5" fill="#e91e63" />
+                            <circle cx="108" cy="151" r="5" fill="#e91e63" />
+                        </svg>
+                    </div>
+
+                    <h1
+                        class="proposal-title typewriter-target"
+                        id="proposal-title"
+                        data-text="Mukami, will you be my girlfriend? 💜"
+                        aria-label="Mukami, will you be my girlfriend? 💜"
+                    ></h1>
+
+                    <div class="proposal-actions" id="actions-container">
+                        <button
+                            class="btn-primary btn-yes"
+                            id="yes-btn"
+                            type="button"
+                        >
+                            Yes!
+                        </button>
+                        <button
+                            class="btn-secondary btn-no"
+                            id="no-btn"
+                            type="button"
+                        >
+                            No
+                        </button>
+                    </div>
+
+                    <!-- Stitch steals the No button -->
+                    <div class="stitch-thief" id="stitch-thief">
+                        <svg viewBox="0 0 100 100" class="thief-svg">
+                            <path
+                                d="M10,100 C10,60 30,40 50,40 C70,40 90,60 90,100"
+                                fill="#2d87e2"
+                                stroke="#1d5c9c"
+                                stroke-width="2"
+                            />
+                            <path
+                                d="M25,100 C25,75 35,60 50,60 C65,60 75,75 75,100"
+                                fill="#71b5ff"
+                            />
+                            <circle cx="40" cy="75" r="5" fill="#000" />
+                            <circle cx="60" cy="75" r="5" fill="#000" />
+                            <ellipse
+                                cx="50"
+                                cy="82"
+                                rx="6"
+                                ry="3"
+                                fill="#123d6a"
+                            />
+                            <path
+                                d="M50,15 C70,15 80,22 80,30 C80,38 70,45 50,45 C45,45 42,48 40,52 C40,48 38,45 35,45 C20,45 20,38 20,30 C20,22 30,15 50,15 Z"
+                                fill="#fff"
+                                stroke="#9c27b0"
+                                stroke-width="2"
+                            />
+                            <text
+                                x="50"
+                                y="32"
+                                font-size="8"
+                                font-family="DynaPuff"
+                                fill="#9c27b0"
+                                text-anchor="middle"
+                            >
+                                Ohana! No 'No'!
+                            </text>
+                        </svg>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Success Screen -->
+            <section class="section" id="success-section">
+                <div class="success-card">
+                    <div class="stitch-happy-container">
+                        <svg viewBox="0 0 200 200" class="stitch-happy-svg">
+                            <!-- Dancing/Happy Stitch -->
+                            <path
+                                d="M30,70 C10,50 5,20 20,30 C35,40 45,55 50,70"
+                                fill="#2d87e2"
+                                stroke="#1c5692"
+                                stroke-width="3"
+                            />
+                            <path
+                                d="M26,65 C12,48 8,28 20,35 C32,42 42,53 46,65"
+                                fill="#ff9ebb"
+                            />
+                            <path
+                                d="M170,70 C190,50 195,20 180,30 C165,40 155,55 150,70"
+                                fill="#2d87e2"
+                                stroke="#1c5692"
+                                stroke-width="3"
+                            />
+                            <path
+                                d="M174,65 C188,48 192,28 180,35 C168,42 158,53 154,65"
+                                fill="#ff9ebb"
+                            />
+                            <ellipse
+                                cx="100"
+                                cy="90"
+                                rx="45"
+                                ry="40"
+                                fill="#2d87e2"
+                                stroke="#1c5692"
+                                stroke-width="3"
+                            />
+                            <path
+                                d="M65,90 C65,75 80,68 100,68 C120,68 135,75 135,90 C135,102 118,115 100,115 C82,115 65,102 65,90 Z"
+                                fill="#71b5ff"
+                            />
+                            <!-- Happy eyes (curves, not circles) -->
+                            <path
+                                d="M72,85 Q82,75 88,85"
+                                stroke="#000"
+                                stroke-width="4"
+                                stroke-linecap="round"
+                                fill="none"
+                            />
+                            <path
+                                d="M112,85 Q118,75 128,85"
+                                stroke="#000"
+                                stroke-width="4"
+                                stroke-linecap="round"
+                                fill="none"
+                            />
+                            <path
+                                d="M92,93 C92,90 108,90 108,93 C108,97 92,97 92,93 Z"
+                                fill="#123d6a"
+                            />
+                            <!-- Big happy mouth -->
+                            <path
+                                d="M80,98 Q100,120 120,98 Z"
+                                fill="#b71c1c"
+                                stroke="#123d6a"
+                                stroke-width="2"
+                            />
+                            <path
+                                d="M90,108 Q100,98 110,108 Q100,118 90,108"
+                                fill="#ff8a80"
+                            />
+                            <!-- Arms up -->
+                            <path
+                                d="M50,110 Q30,120 25,100"
+                                stroke="#2d87e2"
+                                stroke-width="12"
+                                stroke-linecap="round"
+                                fill="none"
+                            />
+                            <path
+                                d="M150,110 Q170,120 175,100"
+                                stroke="#2d87e2"
+                                stroke-width="12"
+                                stroke-linecap="round"
+                                fill="none"
+                            />
+                        </svg>
+                    </div>
+
+                    <h1 class="success-title">She Said Yes! 💜</h1>
+
+                    <!-- FIX: voice-btn and heart-pulse moved outside love-letter for clean letter layout -->
+                    <div class="love-letter" id="love-letter">
+                        <p
+                            class="typewriter-letter-line"
+                            data-text="Dear Mukami,"
+                        ></p>
+                        <p
+                            class="typewriter-letter-line"
+                            data-text="I wanted to create something as magical as the way you make me feel."
+                        ></p>
+                        <p
+                            class="typewriter-letter-line"
+                            data-text="You make me happier than anyone else. I promise to always stand by you, laugh with you, and build our own beautiful Ohana together."
+                        ></p>
+                        <p
+                            class="typewriter-letter-line"
+                            data-text="There are a million reasons why I love you, and I look forward to spending a lifetime showing you every single one of them."
+                        ></p>
+                        <p
+                            class="typewriter-letter-line"
+                            data-text="Thank you for saying yes. You mean the absolute world to me. 💜"
+                        ></p>
+                        <p
+                            class="letter-sign typewriter-letter-line"
+                            data-text="Always yours 💜"
+                        ></p>
+                    </div>
+
+                    <!-- Live "together since" counter -->
+                    <div class="days-counter" id="days-counter">
+                        <div
+                            class="counter-since-label"
+                            id="counter-since-label"
+                        >
+                            Together since May 22, 2026
+                        </div>
+                        <div class="counter-label">We've been together for</div>
+                        <div class="counter-value" id="counter-days">0</div>
+                        <div class="counter-unit" id="counter-unit">days</div>
+                        <div class="counter-hms" id="counter-hms">00:00:00</div>
+                    </div>
+
+                    <!-- Anniversary Countdown Widgets -->
+                    <div class="countdown-section" id="countdown-section">
+                        <h2 class="countdown-heading">Our Milestones 💜</h2>
+                        <div class="countdown-grid" id="countdown-grid">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+
+                    <div class="voice-note-area">
+                        <p class="voice-label">
+                            A little voice note for you 🎙️
+                        </p>
+                        <div class="voice-player" id="voice-player">
+                            <button
+                                class="voice-btn"
+                                id="voice-btn"
+                                type="button"
+                                aria-label="Play voice note"
+                                aria-pressed="false"
+                            >
+                                <span
+                                    class="voice-icon-play"
+                                    aria-hidden="true"
+                                ></span>
+                                <span
+                                    class="voice-icon-pause"
+                                    aria-hidden="true"
+                                ></span>
+                            </button>
+                            <div class="voice-player-meta">
+                                <div class="voice-player-topline">
+                                    <span class="voice-status" id="voice-status"
+                                        >Ready to play</span
+                                    >
+                                    <span class="voice-time" id="voice-time"
+                                        >0:00 / 0:00</span
+                                    >
+                                </div>
+                                <input
+                                    id="voice-progress"
+                                    class="voice-progress"
+                                    type="range"
+                                    min="0"
+                                    max="100"
+                                    value="0"
+                                    step="0.1"
+                                    aria-label="Voice note progress"
+                                />
+                                <p
+                                    class="voice-help"
+                                    id="voice-help"
+                                    aria-live="polite"
+                                ></p>
+                            </div>
+                        </div>
+                        <audio
+                            id="voice-audio"
+                            src="voice-note.wav"
+                            preload="metadata"
+                        ></audio>
+                    </div>
+
+                    <div class="heart-pulse" aria-hidden="true">💜</div>
+                    <button
+                        id="replay-journey-btn"
+                        class="btn-secondary"
+                        style="margin-top: 30px"
+                    >
+                        Replay Journey ↺
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <noscript>
+            <div
+                style="
+                    position: fixed;
+                    inset: auto 16px 16px 16px;
+                    z-index: 9999;
+                    padding: 12px 16px;
+                    border-radius: 12px;
+                    background: #2c1654;
+                    color: #f3e8ff;
+                    font-family: Quicksand, sans-serif;
+                    text-align: center;
+                    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+                "
+            >
+                This experience works best with JavaScript enabled.
+            </div>
+        </noscript>
+        <script src="script.js" defer></script>
+    </body>
+</html>
