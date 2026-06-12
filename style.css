@@ -1256,7 +1256,6 @@ button:focus-visible {
 /*   SUCCESS SECTION                            */
 /* ============================================ */
 #success-section {
-    display: none;
     width: 100%;
 }
 
