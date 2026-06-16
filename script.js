@@ -98,6 +98,7 @@ let hasInitializedScrollReveal = false;
 let deferredInstallPrompt = null;
 let hasTypedProposal = false;
 let hasTypedSuccessLetter = false;
+let envelopeOpen = false;
 const SECRET_WORD = "ohana";
 
 function initAudio() {
@@ -398,7 +399,7 @@ function showSection(fromId, toId) {
 
     to.classList.add("active");
     window.scrollTo({ top: 0, behavior: "smooth" });
-    saveState(toId);
+    saveState(toId, { envelopeOpen });
     onSectionActivated(toId);
   }, 460);
 }
@@ -891,6 +892,7 @@ function startCountdownInterval() {
 function restoreState() {
   const state = loadState();
   const envelopeSection = document.getElementById("envelope-section");
+  const envelope = document.getElementById("envelope");
 
   if (!state || !state.section) {
     return;
