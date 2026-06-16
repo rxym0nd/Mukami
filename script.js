@@ -96,7 +96,6 @@ let floatingHeartInterval = null;
 let shootingStarTimeout = null;
 let hasInitializedScrollReveal = false;
 let deferredInstallPrompt = null;
-let hasTypedProposal = false;
 let hasTypedSuccessLetter = false;
 let envelopeOpen = false;
 const SECRET_WORD = "ohana";
@@ -371,10 +370,6 @@ function loadState() {
 //  SECTION TRANSITIONS
 // ============================================================
 function onSectionActivated(sectionId) {
-  if (sectionId === "proposal-section") {
-    startProposalTypewriter();
-  }
-
   if (sectionId === "success-section") {
     startDaysCounter();
     startCountdownInterval();
@@ -444,8 +439,7 @@ function initScrollReveal() {
 function initSectionControls() {
   const envelope = document.getElementById("envelope");
   const openStoryBtn = document.getElementById("open-story-btn");
-  const toProposalBtn = document.getElementById("to-proposal-btn");
-  const yesBtn = document.getElementById("yes-btn");
+  const toSuccessBtn = document.getElementById("to-success-btn");
   const replayBtn = document.getElementById("replay-journey-btn");
 
   if (envelope) {
@@ -470,19 +464,9 @@ function initSectionControls() {
     });
   }
 
-  if (toProposalBtn) {
-    toProposalBtn.addEventListener("click", () => {
-      showSection("story-section", "proposal-section");
-    });
-  }
-
-  if (yesBtn) {
-    yesBtn.addEventListener("click", () => {
-      showSection("proposal-section", "success-section");
-      setTimeout(() => {
-        playVictorySong();
-        triggerConfetti();
-      }, 500);
+  if (toSuccessBtn) {
+    toSuccessBtn.addEventListener("click", () => {
+      showSection("story-section", "success-section");
     });
   }
 
@@ -490,7 +474,6 @@ function initSectionControls() {
     replayBtn.addEventListener("click", () => {
       // Clear state and reset
       localStorage.removeItem(STORAGE_KEY);
-      hasTypedProposal = false;
       hasTypedSuccessLetter = false;
       envelopeOpen = false;
 
@@ -506,68 +489,17 @@ function initSectionControls() {
           el.textContent = "";
         });
 
-      showSection("success-section", "envelope-section");
+      showSection("envelope-section", "envelope-section");
       window.scrollTo(0, 0);
     });
   }
 }
 
+
 // ============================================================
-//  RUNAWAY "NO" BUTTON + STITCH THIEF
+//  [REMOVED: Proposal-specific buttons]
 // ============================================================
-let runawayCount = 0;
 
-function initNoButton() {
-  const noBtn = document.getElementById("no-btn");
-  const yesBtn = document.getElementById("yes-btn");
-  const card = document.getElementById("proposal-card");
-  const stitchThief = document.getElementById("stitch-thief");
-
-  if (!noBtn || !yesBtn || !card || !stitchThief) return;
-
-  if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
-    noBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      moveNoButton();
-    });
-    return;
-  }
-
-  function moveNoButton() {
-    if (runawayCount < 3) {
-      runawayCount++;
-      const cardRect = card.getBoundingClientRect();
-      const noBtnRect = noBtn.getBoundingClientRect();
-      const maxX = Math.max(40, cardRect.width - noBtnRect.width - 40);
-      const maxY = Math.max(40, cardRect.height - noBtnRect.height - 40);
-      noBtn.style.position = "absolute";
-      noBtn.style.left = `${Math.max(20, Math.floor(Math.random() * maxX))}px`;
-      noBtn.style.top = `${Math.max(20, Math.floor(Math.random() * maxY))}px`;
-      yesBtn.style.transform = `scale(${1 + runawayCount * 0.15})`;
-    } else {
-      triggerStitchThief();
-    }
-  }
-
-  function triggerStitchThief() {
-    noBtn.style.pointerEvents = "none";
-    stitchThief.classList.add("active");
-    noBtn.style.opacity = "0";
-
-    setTimeout(() => {
-      noBtn.remove();
-      stitchThief.classList.remove("active");
-      yesBtn.style.transform = "scale(1.4)";
-      yesBtn.classList.add("pulse-glow");
-    }, 2500);
-  }
-
-  noBtn.addEventListener("mouseenter", moveNoButton);
-  noBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    moveNoButton();
-  });
-}
 
 // ============================================================
 //  CONFETTI — with cleanup ref
@@ -901,7 +833,6 @@ function restoreState() {
   const validSections = [
     "envelope-section",
     "story-section",
-    "proposal-section",
     "success-section",
   ];
   if (!validSections.includes(state.section)) {

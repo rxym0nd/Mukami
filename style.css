@@ -1,24 +1,54 @@
-/* Design System Variables */
+/* Design System Variables - Stitch Themed Purple */
 :root {
-    --bg-dark: #0c081d;
+    --bg-dark: #05050c;
     --bg-gradient: linear-gradient(
         135deg,
-        #0c081d 0%,
-        #191238 40%,
-        #3b1e6e 80%,
-        #5a2893 100%
+        #05050c 0%,
+        #0a0a1a 30%,
+        #1a0033 70%,
+        #8a4fff 100%
     );
-    --primary: #9d4edd;
-    --primary-hover: #7b2cbf;
-    --primary-light: #c77dff;
-    --accent-pink: #ff9ebb;
-    --text-light: #f3e8ff;
-    --text-dark: #2c1654;
-    --glass-bg: rgba(255, 255, 255, 0.07);
-    --glass-border: rgba(255, 255, 255, 0.12);
-    --font-display: "DynaPuff", cursive;
-    --font-body: "Quicksand", sans-serif;
-    --font-handwritten: "Pacifico", cursive;
+    --primary: #8a4fff;
+    --primary-hover: #6b3ce0;
+    --primary-light: #a78fff;
+    --accent-pink: #ff6b9b;
+    --highlight-yellow: #ffd166;
+    --text-light: #f0e6ff;
+    --text-dark: #1a0033;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --font-display: "Press Start 2P", monospace;
+    --font-body: "Nunito", sans-serif;
+    --font-handwritten: "Patrick Hand", cursive;
+
+    /* Envelope Colors */
+    --envelope-base: #5a2893;
+    --envelope-flap: #7b2cbf;
+    --envelope-pocket: #4a1d7c;
+    --envelope-pocket-bottom: #3b1564;
+
+    /* Seal Colors */
+    --seal-base: #d81b60;
+    --seal-heart: #fff;
+    --seal-paw: rgba(255, 255, 255, 0.7);
+
+    /* Letter Colors */
+    --letter-bg: #fff;
+    --letter-text: #555;
+    --letter-title: #2c1654;
+
+    /* Friends Section Colors */
+    --friends-bg: rgba(139, 69, 19, 0.25);
+    --friends-bg-dark: rgba(101, 67, 33, 0.15);
+    --friends-border: rgba(210, 160, 90, 0.3);
+    --friends-gold: #d4a44c;
+    --friends-gold-light: #e8c86a;
+    --friends-gold-dark: #b8860b;
+    --friends-quote: #f0d68a;
+    --friends-clap: #e8c86a;
+
+    /* Countdown Colors */
+    --countdown-reached: #e91e63;
 }
 
 /* Global Reset */
@@ -99,7 +129,7 @@ body {
     50% {
         opacity: 1;
         transform: scale(1.2);
-        box-shadow: 0 0 8px #c77dff;
+        box-shadow: 0 0 8px var(--primary-light);
     }
 }
 
@@ -120,7 +150,7 @@ body {
     bottom: -50px;
     width: 600px;
     height: 250px;
-    background: radial-gradient(circle, #7b2cbf 0%, transparent 70%);
+    background: radial-gradient(circle, var(--envelope-flap) 0%, transparent 70%);
     border-radius: 50%;
     filter: blur(40px);
 }
@@ -499,7 +529,7 @@ button:focus-visible {
     position: relative;
     width: 320px;
     height: 220px;
-    background: #5a2893;
+    background: var(--envelope-base);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
     border-radius: 0 0 10px 10px;
     transition: transform 0.5s;
@@ -513,7 +543,7 @@ button:focus-visible {
     height: 0;
     border-left: 160px solid transparent;
     border-right: 160px solid transparent;
-    border-top: 120px solid #7b2cbf;
+    border-top: 120px solid var(--envelope-flap);
     transform-origin: top;
     transition:
         transform 0.5s 0.3s,
@@ -527,9 +557,9 @@ button:focus-visible {
     left: 0;
     width: 0;
     height: 0;
-    border-left: 160px solid #4a1d7c;
-    border-right: 160px solid #4a1d7c;
-    border-bottom: 110px solid #3b1564;
+    border-left: 160px solid var(--envelope-pocket);
+    border-right: 160px solid var(--envelope-pocket);
+    border-bottom: 110px solid var(--envelope-pocket-bottom);
     border-radius: 0 0 10px 10px;
     z-index: 2;
 }
@@ -559,13 +589,13 @@ button:focus-visible {
 }
 
 .seal-base {
-    fill: #d81b60;
+    fill: var(--seal-base);
 }
 .seal-heart {
-    fill: #fff;
+    fill: var(--seal-heart);
 }
 .seal-paw {
-    fill: rgba(255, 255, 255, 0.7);
+    fill: var(--seal-paw);
 }
 
 .seal-prompt {
@@ -594,7 +624,7 @@ button:focus-visible {
     left: 10px;
     width: 300px;
     height: 200px;
-    background: #fff;
+    background: var(--letter-bg);
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
@@ -609,14 +639,14 @@ button:focus-visible {
 
 .letter-content h2 {
     font-family: var(--font-handwritten);
-    color: var(--text-dark);
+    color: var(--letter-title);
     font-size: 1.6rem;
     margin-bottom: 10px;
 }
 
 .letter-content p {
     font-size: 0.95rem;
-    color: #555;
+    color: var(--letter-text);
     margin-bottom: 15px;
     line-height: 1.4;
 }
@@ -884,10 +914,10 @@ button:focus-visible {
 .friends-card {
     background: linear-gradient(
         145deg,
-        rgba(139, 69, 19, 0.25) 0%,
-        rgba(101, 67, 33, 0.15) 100%
+        var(--friends-bg) 0%,
+        var(--friends-bg-dark) 100%
     );
-    border: 1px solid rgba(210, 160, 90, 0.3);
+    border: 1px solid var(--friends-border);
     backdrop-filter: blur(15px);
     border-radius: 20px;
     padding: 35px 25px;
@@ -904,11 +934,11 @@ button:focus-visible {
     height: 4px;
     background: linear-gradient(
         90deg,
-        #d4a44c,
-        #e8c86a,
-        #d4a44c,
-        #b8860b,
-        #d4a44c
+        var(--friends-gold),
+        var(--friends-gold-light),
+        var(--friends-gold),
+        var(--friends-gold-dark),
+        var(--friends-gold)
     );
     background-size: 200% 100%;
     animation: goldShimmer 3s linear infinite;
@@ -926,7 +956,7 @@ button:focus-visible {
 .friends-logo {
     font-family: var(--font-display);
     font-size: 1.2rem;
-    color: #e8c86a;
+    color: var(--friends-gold-light);
     letter-spacing: 3px;
     text-transform: uppercase;
     margin-bottom: 8px;

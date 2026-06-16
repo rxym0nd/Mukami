@@ -3,9 +3,9 @@
   "short_name": "Mukami",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#0c081d",
-  "theme_color": "#9d4edd",
-  "description": "A special message for Mukami 💜",
+  "background_color": "#05050c",
+  "theme_color": "#8a4fff",
+  "description": "Our ohana forever 💜",
   "icons": [
     {
       "src": "icon-192.png",

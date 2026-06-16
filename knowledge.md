@@ -101,6 +101,9 @@ Mukami/
 - Fixed missing `envelopeOpen` global variable declaration.
 - Fixed `restoreState()` to correctly retrieve the envelope element.
 - Updated `showSection()` to persist `envelopeOpen` state across section transitions, ensuring the envelope remains open when navigating through the story.
+- Removed proposal section since she said yes - story now transitions directly to success screen.
+- Updated button references and section IDs to reflect new flow: unlock → envelope → story → success.
+- Removed proposal-specific UI elements (runaway "No" button, Stitch thief, Yes/No buttons).
 - Minor code clean‑up and comment updates for clarity.
 
 ## Credits
